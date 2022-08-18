@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/Bryan-BC/go-api-gateway/pkg/auth"
@@ -20,7 +19,7 @@ func main() {
 
 	authSvc := *auth.RegisterRoutes(r, &c)
 
-	fmt.Printf("%+v", authSvc)
+	log.Printf("%+v", authSvc)
 
 	r.Run(c.Port)
 }
