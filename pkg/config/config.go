@@ -7,8 +7,9 @@ import (
 )
 
 type Config struct {
-	Port       string `mapstructure:"PORT"`
-	AuthSvcURL string `mapstructure:"AUTH_SVC_URL"`
+	Port         string `mapstructure:"PORT"`
+	AuthSvcURL   string `mapstructure:"AUTH_SVC_URL"`
+	CourseSvcURL string `mapstructure:"COURSE_SVC_URL"`
 }
 
 func LoadConfig() (c Config, err error) {

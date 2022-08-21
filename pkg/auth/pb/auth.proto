@@ -16,9 +16,9 @@ message LoginRequest {
 }
 
 message LoginResponse {
-    string token = 1;
-    int64 status = 2;
-    string error = 3;
+    int64 status = 1;
+    string error = 2;
+    string token = 3;
 }
 
 message RegisterRequest {

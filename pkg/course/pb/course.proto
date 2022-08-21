@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package course;
+
+option go_package = "pkg/course/pb";
+
+service CourseService {
+    rpc GetCourse(GetCourseRequest) returns (GetCourseResponse) {}
+    rpc CreateCourse(CreateCourseRequest) returns (CreateCourseResponse) {}
+    rpc DeleteCourse(DeleteCourseRequest) returns (DeleteCourseResponse) {}
+}
+
+message IntTuple {
+    int64 first = 1;
+    int64 second = 2;
+}
+
+message Day {
+    string day = 1;
+    repeated IntTuple timeslots = 2;
+}
+
+message Course {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    repeated Day schedule = 4;
+}
+
+message GetCourseRequest {
+    string id = 1;
+}
+
+
+message GetCourseResponse {
+    int64 status = 1;
+    string error = 2;
+    Course course = 3;
+}
+
+message CreateCourseRequest {
+    Course course = 1;
+}
+
+message CreateCourseResponse {
+    int64 status = 1;
+    string error = 2;
+}
+
+message DeleteCourseRequest {
+    string id = 1;
+}
+
+message DeleteCourseResponse {
+    int64 status = 1;
+    string error = 2;
+}

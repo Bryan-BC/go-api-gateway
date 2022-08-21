@@ -5,6 +5,7 @@ import (
 
 	"github.com/Bryan-BC/go-api-gateway/pkg/auth"
 	"github.com/Bryan-BC/go-api-gateway/pkg/config"
+	"github.com/Bryan-BC/go-api-gateway/pkg/course"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,6 +19,7 @@ func main() {
 	r := gin.Default()
 
 	authSvc := *auth.RegisterRoutes(r, &c)
+	course.RegisterRoutes(r, &c, &authSvc)
 
 	log.Printf("%+v", authSvc)
 

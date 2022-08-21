@@ -3,6 +3,7 @@ package auth
 import (
 	"context"
 	"log"
+	"net/http"
 
 	"github.com/Bryan-BC/go-api-gateway/pkg/auth/pb"
 	"github.com/gin-gonic/gin"
@@ -16,6 +17,7 @@ type LoginRequest struct {
 func Login(ctx *gin.Context, authSvc pb.AuthServiceClient) {
 	var req LoginRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		log.Panicf("Error binding json, %s", err)
 		return
 	}
@@ -26,6 +28,7 @@ func Login(ctx *gin.Context, authSvc pb.AuthServiceClient) {
 	})
 
 	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		log.Panicf("Error calling auth service, %s", err)
 		return
 	}
