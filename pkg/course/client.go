@@ -14,7 +14,6 @@ type ServiceClient struct {
 
 func NewServiceClient(c *config.Config) *ServiceClient {
 	cc, err := grpc.Dial(c.CourseSvcURL, grpc.WithInsecure())
-
 	if err != nil {
 		log.Panicf("Error connecting to course service, %s", err)
 	}

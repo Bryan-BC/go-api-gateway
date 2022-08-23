@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package timetable;
+
+option go_package = "pkg/timetable/pb";
+
+service TimetableService {
+    rpc GetTimetable(GetTimetableRequest) returns (GetTimetableResponse) {}
+    rpc CreateTimetable(CreateTimetableRequest) returns (CreateTimetableResponse) {}
+}
+
+message TimetableIntTuple {
+    int64 start = 1;
+    int64 end = 2;
+}
+
+message TimetableDay {
+    string day = 1;
+    repeated TimetableIntTuple timings = 2;
+}
+
+message TimetableSchedule {
+    string courseName = 1;
+    repeated TimetableDay days = 2;
+}
+
+message Timetable {
+    int64 id = 1;
+    repeated TimetableSchedule courses = 2;
+}
+
+message GetTimetableRequest {
+    int64 id = 1;
+}
+
+message GetTimetableResponse {
+    int64 status = 1;
+    string error = 2;
+    Timetable timetable = 3;
+}
+
+message CreateTimetableRequest {
+    repeated string courses = 1;
+    int64 userId = 2;
+}
+
+message CreateTimetableResponse {
+    int64 status = 1;
+    string error = 2;
+    Timetable timetable = 3;
+}

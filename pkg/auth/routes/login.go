@@ -16,7 +16,7 @@ type LoginRequest struct {
 
 func Login(ctx *gin.Context, authSvc pb.AuthServiceClient) {
 	var req LoginRequest
-	if err := ctx.ShouldBindJSON(&req); err != nil {
+	if err := ctx.BindJSON(&req); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		log.Panicf("Error binding json, %s", err)
 		return

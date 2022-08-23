@@ -6,6 +6,7 @@ import (
 	"github.com/Bryan-BC/go-api-gateway/pkg/auth"
 	"github.com/Bryan-BC/go-api-gateway/pkg/config"
 	"github.com/Bryan-BC/go-api-gateway/pkg/course"
+	"github.com/Bryan-BC/go-api-gateway/pkg/timetable"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,8 +21,7 @@ func main() {
 
 	authSvc := *auth.RegisterRoutes(r, &c)
 	course.RegisterRoutes(r, &c, &authSvc)
-
-	log.Printf("%+v", authSvc)
+	timetable.RegisterRoutes(r, &c, &authSvc)
 
 	r.Run(c.Port)
 }
